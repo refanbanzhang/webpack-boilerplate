@@ -1,23 +1,8 @@
-import axios from "axios";
-import axiosSetting from "./axiosSetting";
-
-axiosSetting();
-
-function get(path, data = {}, config = {}) {
-  return axios.get(path, {
-    ...config,
-    params: data
-  });
-}
-
-function post(path, data = {}, config = {}) {
-  return axios.post(path, data, config);
-}
+import { get, post } from "./steup";
 
 /**
  * 校验交易密码
- * @param {*} url
- * @param {*} pswd
+ * @param {String} oldPwd
  */
 export function checkPaymentPswd(oldPwd) {
   return post("/user/checkpaypwd.do", {
@@ -34,6 +19,7 @@ export function getVehicleList() {
 
 /**
  * 删除指定id车辆
+ * @param {String} id
  */
 export function delVehicleById(id) {
   return post("/peccancy/delUserCar.do", {
@@ -43,6 +29,7 @@ export function delVehicleById(id) {
 
 /**
  * 添加车辆
+ * @param {Object} data
  */
 export function addVehicle(data) {
   return post("/peccancy/addUserCar.do", data);
@@ -50,6 +37,7 @@ export function addVehicle(data) {
 
 /**
  * 获取违章数据
+ * @param {Object} vehicle
  */
 export function getPeccancyList(vehicle) {
   return post("/peccancy/peccancyQuery.do", {
@@ -59,6 +47,7 @@ export function getPeccancyList(vehicle) {
 
 /**
  * 违章代办
+ * @param {Object} data
  */
 export function peccancyDeal(data) {
   return post("/peccancy/peccancyDeal.do", data);
@@ -66,6 +55,7 @@ export function peccancyDeal(data) {
 
 /**
  * 查询违章详情
+ * @param {Object} data
  */
 export function peccancyQueryDetail(data) {
   return post("/peccancy/peccancyQueryDetail.do", data);

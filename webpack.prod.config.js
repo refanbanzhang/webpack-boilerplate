@@ -81,7 +81,7 @@ module.exports = merge(baseConfig, {
         removeAttributeQuotes: true //  移除属性的引号
       },
       title: '车辆列表',
-      filename: `${PAGE_DIR}/peccancy/vehicleList.ftl`,
+      filename: `${PAGE_DIR}/peccancy/vehicleList.html`,
       chunks: ['vendor', 'common', 'vehicleList'],
       chunksSortMode: "manual"
     }),

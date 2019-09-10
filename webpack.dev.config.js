@@ -1,10 +1,17 @@
+const path = require('path')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const baseConfig = require('./webpack.base.config.js')
 
-const PAGE_DIR = `${__dirname}/src/pages`
+const PAGES_DIR = path.resolve(__dirname, 'src/pages')
+const ENTRYS_DIR = path.resolve(__dirname, 'src/pages/**/*.js')
+const DIST_PATH = path.resolve(__dirname, 'build')
+
+function resolve(prefix, _path) {
+  return path.resolve(prefix, _path)
+}
 
 module.exports = merge(baseConfig, {
   module: {
@@ -54,9 +61,11 @@ module.exports = merge(baseConfig, {
     new ExtractTextPlugin('assets/css/[name].[chunkhash:8].css'),
 
     new HtmlWebpackPlugin({
-      title: '车辆列表',
-      filename: `${PAGE_DIR}/peccancy/vehicleList.ftl`,
-      chunks: ['vendor', 'common', 'vehicleList'],
+      filename: resolve(DIST_PATH, 'pages/peccancy/vehicleList.html'),
+      //  如果chunks不配置值 那么默认引入所有入口js文件 所以需要指定
+      //  vendor是指提取涉及node_modules中的公共模块
+      //  manifest是对vendor模块做的缓存
+      chunks: ['manifest', 'vendor', 'common', 'vehicleList'],
       chunksSortMode: "manual"
     }),
   ]

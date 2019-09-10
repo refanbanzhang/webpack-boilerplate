@@ -1,0 +1,16 @@
+C:\Users\Administrator\Desktop\webpack-boilerplate
+├── LICENSE
+├── package-lock.json
+├── package.json
+├── postcss.config.js
+├── README.md
+├── src
+|  ├── api
+|  ├── assets
+|  ├── pages
+|  └── util
+├── webpack.base.config.js
+├── webpack.dev.config.js
+└── webpack.prod.config.js
+
+directory: 5 file: 8 
