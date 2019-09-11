@@ -21,13 +21,16 @@ function getEntrys() {
 const entrys = getEntrys();
 entrys["vendor"] = ["react", "react-dom", "axios"];
 
+// 可以将入口映射导出后面使用
+exports.htmlPlugin = function() {};
+
 module.exports = {
   entry: entrys,
 
   output: {
     path: DIST_PATH,
-    filename: "[name].[chunkhash:8].js", // 这里的name是根据entry的入口key决定的
-    publicPath: "" //  生成到打包后的文件中的路径前缀
+    filename: "assets/js/[name].[chunkhash:8].js", // 这里的name是根据entry的入口key决定的
+    publicPath: "/build" //  生成到打包后的文件中的路径前缀
   },
 
   module: {

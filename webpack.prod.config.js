@@ -56,7 +56,7 @@ module.exports = merge(baseConfig, {
     new webpack.optimize.CommonsChunkPlugin({
       name: ['common'],
       filename: 'assets/js/[name].[chunkhash:8].js',
-      chunks: ['vehicleList'] // 从数组中的入口中提取公共文件
+      chunks: ["vehicleList", "addVehicle", "home"] // 从数组中的入口中提取公共文件
     }),
 
     new ExtractTextPlugin('assets/css/[name].[chunkhash:8].css'),

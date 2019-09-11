@@ -2,11 +2,11 @@ import { get, post } from "./steup";
 
 /**
  * 校验交易密码
- * @param {String} oldPwd
+ * @param {String} pswd
  */
-export function checkPaymentPswd(oldPwd) {
+export function checkPaymentPswd(pswd) {
   return post("/user/checkpaypwd.do", {
-    oldPwd
+    pswd
   });
 }
 
