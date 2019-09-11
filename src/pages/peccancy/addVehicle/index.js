@@ -1,13 +1,12 @@
-import '@/assets/css/weui.min.css'
-import '@/assets/css/common.css'
-import './index.css'
 
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import weui from '@/assets/js/weui.min.js'
-import Backhome from '@/components/Backhome.jsx'
 import { addVehicle } from '@/api'
 import { fixIos12WeixinInputBug, redirect } from '@/util'
+
+import '@/assets/css/weui.min.css'
+import '@/assets/css/common.css'
+import './index.css'
 
 const vehicleTypes = [
   { label: '大型汽车', value: '01' },

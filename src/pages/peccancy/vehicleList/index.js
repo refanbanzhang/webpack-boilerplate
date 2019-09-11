@@ -1,15 +1,13 @@
-import '@/assets/css/weui.min.css'
-import '@/assets/css/common.css'
-import './index.css'
 
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
-import weui from '@/assets/js/weui.min.js'
 import { getVehicleList, delVehicleById } from '@/api'
 import { getVehicleTypeAsText } from '@/util'
-import SkeletonPlaceholder from '@/components/SkeletonPlaceholder.jsx'
-import Backhome from '@/components/Backhome.jsx'
+
+import '@/assets/css/weui.min.css'
+import '@/assets/css/common.css'
+import './index.css'
 
 const Item = function({vehicle, vehicle_type, id, frame_no, engine_no, user_phone, clickHandle}) {
   const href = `/portal/peccancy/userPeccancy.do?vehicleNo=${vehicle}&engineNo=${engine_no}&userPhone=${user_phone}`
