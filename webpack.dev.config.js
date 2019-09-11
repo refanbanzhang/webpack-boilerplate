@@ -50,7 +50,7 @@ module.exports = merge(baseConfig, {
   module: {
     rules: [
       {
-        test: /\.scss$/,
+        test: /\.(scss|css)$/,
         use: ExtractTextPlugin.extract({
           fallback: "style-loader",
           use: [
@@ -59,20 +59,6 @@ module.exports = merge(baseConfig, {
             },
             {
               loader: "sass-loader"
-            },
-            {
-              loader: "postcss-loader"
-            }
-          ]
-        })
-      },
-      {
-        test: /\.css$/,
-        use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: [
-            {
-              loader: "css-loader"
             },
             {
               loader: "postcss-loader"

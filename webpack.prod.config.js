@@ -46,6 +46,10 @@ module.exports = merge(baseConfig, {
   },
 
   plugins: [
+    new webpack.DefinePlugin({
+      __PROD__: true
+    }),
+
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
       filename: 'assets/js/[name].[chunkhash:8].js',

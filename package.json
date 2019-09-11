@@ -38,6 +38,7 @@
     "webpack-merge": "^4.2.1"
   },
   "dependencies": {
+    "antd-mobile": "^2.3.1",
     "axios": "^0.18.0",
     "better-scroll": "^1.14.1",
     "font-awesome": "^4.7.0",

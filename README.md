@@ -8,6 +8,8 @@
 - [x] 定义环境变量
 - [x] 读取目录生成入口配置
 - [x] 全局引入jquery
+- [ ] devtool: 'source-map' devtool: dev ? 'eval-cheap-module-source-map' : 'source-map',
+
 
 
 ### 生成目录树的命令

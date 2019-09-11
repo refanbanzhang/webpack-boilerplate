@@ -52,14 +52,9 @@ module.exports = {
   resolve: {
     alias: {
       "@": path.resolve("src")
-    }
+    },
+    extensions: [".js", ".jsx", ".css", ".scss", ".json"]
   },
 
-  plugins: [
-    new CleanWebpackPlugin(DIST_PATH),
-
-    new webpack.DefinePlugin({
-      root: JSON.stringify("/portal")
-    })
-  ]
+  plugins: [new CleanWebpackPlugin(DIST_PATH)]
 };
