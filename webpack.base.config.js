@@ -3,29 +3,31 @@ const path = require("path");
 const webpack = require("webpack");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 
-const SRC_PATH = path.resolve(__dirname, "src");
 const DIST_PATH = path.resolve(__dirname, "build");
-const ENTRYS_DIR = path.resolve(__dirname, "src/pages/**/*.js");
+const ENTRYS_DIR = path.resolve(__dirname, "src/pages/**/index.js");
 
-function getEntrys() {
-  const resultEntry = {};
-  const entryFiles = glob.sync(ENTRYS_DIR);
-  entryFiles.forEach(filePath => {
-    const temp = filePath.split("/");
-    const key = temp[temp.length - 2];
-    resultEntry[key] = filePath;
+/**
+ * 获取指定路径下的文件
+ * @param {String} globPath
+ */
+function getEntrys(globPath) {
+  const entries = {};
+  const files = glob.sync(globPath);
+
+  files.forEach(filePath => {
+    const split = filePath.split("/");
+    const name = split[split.length - 2];
+    entries[name] = filePath;
   });
-  return resultEntry;
+
+  return entries;
 }
 
-const entrys = getEntrys();
-entrys["vendor"] = ["react", "react-dom", "axios"];
-
-// 可以将入口映射导出后面使用
-exports.htmlPlugin = function() {};
-
 module.exports = {
-  entry: entrys,
+  entry: {
+    vendor: ["react", "react-dom", "axios"],
+    ...getEntrys(ENTRYS_DIR)
+  },
 
   output: {
     path: DIST_PATH,
@@ -56,5 +58,13 @@ module.exports = {
     extensions: [".js", ".jsx", ".css", ".scss", ".json"]
   },
 
-  plugins: [new CleanWebpackPlugin(DIST_PATH)]
+  plugins: [
+    new CleanWebpackPlugin(DIST_PATH),
+    // 配置全局变量 无需import或者requre即可使用
+    new webpack.ProvidePlugin({
+      $: "jquery"
+    })
+  ]
 };
+
+exports.getEntrys = getEntrys;

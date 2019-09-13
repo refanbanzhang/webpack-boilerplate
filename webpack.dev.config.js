@@ -87,11 +87,13 @@ module.exports = merge(baseConfig, {
   },
 
   plugins: [
-    // 配置全局变量 无需import或者requre即可使用
-    new webpack.ProvidePlugin({
-      $: "jquery"
+    // 定义全局变量
+    // 这里会直接进行文本替换 如果你定义一个ENV: 'production' 那么在业务代码中使用ENV会变成一个production变量
+    // 所以 如果你期望ENV被替换为一个字符串'production'而不是production变量 你需要用引号包起来 或者使用
+    // JSON.stringify('production')
+    new webpack.DefinePlugin({
+      __DEV__: true
     }),
-
     // 将第三方库打包
     new webpack.optimize.CommonsChunkPlugin({
       name: "vendor",
@@ -109,13 +111,6 @@ module.exports = merge(baseConfig, {
 
     new ExtractTextPlugin("assets/css/[name].[chunkhash:8].css"),
 
-    // 定义全局变量
-    // 这里会直接进行文本替换 如果你定义一个ENV: 'production' 那么在业务代码中使用ENV会变成一个production变量
-    // 所以 如果你期望ENV被替换为一个字符串'production'而不是production变量 你需要用引号包起来 或者使用
-    // JSON.stringify('production')
-    new webpack.DefinePlugin({
-      __DEV__: true
-    }),
     ...arr
     // new HtmlWebpackPlugin({
     //   filename: resolve(DIST_PATH, "pages/peccancy/vehicleList.html"),

@@ -1,7 +1,11 @@
 body {
   background: #f7f7f8;
+  box-sizing: border-box;
   h1 {
     color: red;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 3px;
   }
 }
