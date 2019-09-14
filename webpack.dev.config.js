@@ -1,5 +1,4 @@
 const path = require("path");
-const glob = require("glob");
 const webpack = require("webpack");
 const merge = require("webpack-merge");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -7,9 +6,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const baseConfig = require("./webpack.base.config.js");
 const helper = require("./helper");
 
-const PAGES_DIR = path.resolve(__dirname, "src/pages");
-const ENTRYS_DIR = path.resolve(__dirname, "src/pages/**/*.js");
-const DIST_PATH = path.resolve(__dirname, "build");
+const ENTRYS_DIR = helper.resolve("src/pages/**/index.js");
 
 const HtmlSchema = [];
 helper.getHtmlSchema(ENTRYS_DIR).forEach(item => {
@@ -29,7 +26,7 @@ helper.getHtmlSchema(ENTRYS_DIR).forEach(item => {
 module.exports = merge(baseConfig, {
   // cheap source-map中 丢弃列信息 只有行信息
   devtool: "cheap-module-source-map",
-  
+
   module: {
     rules: [
       {

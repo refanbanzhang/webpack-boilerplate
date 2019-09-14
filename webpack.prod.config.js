@@ -1,4 +1,3 @@
-const path = require("path");
 const webpack = require("webpack");
 const merge = require("webpack-merge");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -7,7 +6,7 @@ const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const baseConfig = require("./webpack.base.config.js");
 const helper = require("./helper");
 
-const ENTRYS_DIR = path.resolve(__dirname, "src/pages/**/*.js");
+const ENTRYS_DIR = helper.resolve("src/pages/**/index.js");
 
 const HtmlSchema = [];
 helper.getHtmlSchema(ENTRYS_DIR).forEach(item => {
@@ -32,7 +31,7 @@ helper.getHtmlSchema(ENTRYS_DIR).forEach(item => {
 module.exports = merge(baseConfig, {
   // 调试的时候 会根据.map文件去定位原始代码的位置 利于调试
   devtool: "source-map",
-  
+
   module: {
     rules: [
       {

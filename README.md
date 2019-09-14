@@ -8,7 +8,7 @@
 - [ ] 理清楚静态资源的打包输出目录关系
 - [x] 优化一下读取入口的函数
 - 字体图标
-- 配置识别js jsx后缀文件
+- [x] 配置省略js jsx文件后缀
 - [x] 定义环境变量
 - [x] 读取目录生成入口配置
 - [x] 全局引入jquery
@@ -16,6 +16,25 @@
 
 ### 生成目录树的命令
 `tree -l 2 -o output.txt`
+
+
+##### 打包路径结果的分析
+已知的打包路径控制点分别是：
+- ouput.path
+- ouput.filename
+- ouput.publicPath
+
+css：
+- ExtractTextPlugin
+
+图片：
+- url-loader的name
+
+js：
+- CommonsChunkPlugin的filename
+
+html：
+- HtmlWebpackPlugin的filename
 
 
 ##### js打包说明
@@ -40,7 +59,7 @@
 
 
 ##### 关于`devtool`
-source-map 代码会生成一个.map文件 映射原始代码的位置信息 方便调试
+> 当 webpack 打包源代码时，可能会很难追踪到错误和警告在源代码中的原始位置。例如，如果将三个源文件（a.js, b.js 和 c.js）打包到一个 bundle（bundle.js）中，而其中一个源文件包含一个错误，那么堆栈跟踪就会简单地指向到 bundle.js。这并通常没有太多帮助，因为你可能需要准确地知道错误来自于哪个源文件。为了更容易地追踪错误和警告，JavaScript 提供了 source map 功能，将编译后的代码映射回原始源代码。如果一个错误来自于 b.js，source map 就会明确的告诉你。
 
 开发环境 cheap-module-source-map
 生产环境 source-map
