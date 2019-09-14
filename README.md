@@ -12,9 +12,7 @@
 - [x] 定义环境变量
 - [x] 读取目录生成入口配置
 - [x] 全局引入jquery
-- [ ] devtool: 'source-map' devtool: dev ? 'eval-cheap-module-source-map' : 'source-map',
-
-
+- [x] devtool: 'source-map' devtool: dev ? 'cheap-module-source-map' : 'source-map',
 
 ### 生成目录树的命令
 `tree -l 2 -o output.txt`
@@ -36,3 +34,13 @@
 ##### 关于`webpack.optimize.CommonsChunkPlugin`抽取公共文件打包
 这个插件似乎不单只作用到`js`文件，连`css`文件也会作用到，所以我猜测它会针对任何文件进行抽取，不限于文件格式，后面进行验证我的猜想
 
+
+##### 关于`HtmlWebpackPlugin`输出的目录
+输出路径：`config.output.publicPath + HtmlWebpackPlugin.filename`
+
+
+##### 关于`devtool`
+source-map 代码会生成一个.map文件 映射原始代码的位置信息 方便调试
+
+开发环境 cheap-module-source-map
+生产环境 source-map

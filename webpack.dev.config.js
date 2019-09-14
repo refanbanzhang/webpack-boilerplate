@@ -5,37 +5,17 @@ const merge = require("webpack-merge");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const baseConfig = require("./webpack.base.config.js");
+const helper = require("./helper");
 
 const PAGES_DIR = path.resolve(__dirname, "src/pages");
 const ENTRYS_DIR = path.resolve(__dirname, "src/pages/**/*.js");
 const DIST_PATH = path.resolve(__dirname, "build");
 
-function resolve(prefix, _path) {
-  return path.resolve(prefix, _path);
-}
-
-function getHtmlSchema() {
-  const resultEntry = [];
-  const entryFiles = glob.sync(ENTRYS_DIR);
-  entryFiles.forEach(filePath => {
-    const str = filePath.split("pages")[1];
-    const name = str.substring(1, str.lastIndexOf("/"));
-    const entry = name.split("/")[name.split("/").length - 1];
-    resultEntry.push({
-      name: name,
-      entry: entry
-    });
-  });
-  return resultEntry;
-}
-
-const htmlSchema = getHtmlSchema();
-
-const arr = [];
-htmlSchema.forEach(item => {
-  arr.push(
+const HtmlSchema = [];
+helper.getHtmlSchema(ENTRYS_DIR).forEach(item => {
+  HtmlSchema.push(
     new HtmlWebpackPlugin({
-      filename: resolve(DIST_PATH, `pages/${item.name}.html`),
+      filename: `pages/${item.name}.html`,
       template: "./src/template/index.html",
       //  如果chunks不配置值 那么默认引入所有入口js文件 所以需要指定
       //  vendor是指提取涉及node_modules中的公共模块
@@ -47,6 +27,9 @@ htmlSchema.forEach(item => {
 });
 
 module.exports = merge(baseConfig, {
+  // cheap source-map中 丢弃列信息 只有行信息
+  devtool: "cheap-module-source-map",
+  
   module: {
     rules: [
       {
@@ -94,6 +77,7 @@ module.exports = merge(baseConfig, {
     new webpack.DefinePlugin({
       __DEV__: true
     }),
+
     // 将第三方库打包
     new webpack.optimize.CommonsChunkPlugin({
       name: "vendor",
@@ -111,14 +95,6 @@ module.exports = merge(baseConfig, {
 
     new ExtractTextPlugin("assets/css/[name].[chunkhash:8].css"),
 
-    ...arr
-    // new HtmlWebpackPlugin({
-    //   filename: resolve(DIST_PATH, "pages/peccancy/vehicleList.html"),
-    //   //  如果chunks不配置值 那么默认引入所有入口js文件 所以需要指定
-    //   //  vendor是指提取涉及node_modules中的公共模块
-    //   //  manifest是对vendor模块做的缓存
-    //   chunks: ["manifest", "vendor", "common", "vehicleList"],
-    //   chunksSortMode: "manual"
-    // })
+    ...HtmlSchema
   ]
 });

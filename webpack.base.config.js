@@ -1,32 +1,15 @@
-const glob = require("glob");
 const path = require("path");
 const webpack = require("webpack");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
+const helper = require("./helper");
 
-const DIST_PATH = path.resolve(__dirname, "build");
-const ENTRYS_DIR = path.resolve(__dirname, "src/pages/**/index.js");
-
-/**
- * 获取指定路径下的文件
- * @param {String} globPath
- */
-function getEntrys(globPath) {
-  const entries = {};
-  const files = glob.sync(globPath);
-
-  files.forEach(filePath => {
-    const split = filePath.split("/");
-    const name = split[split.length - 2];
-    entries[name] = filePath;
-  });
-
-  return entries;
-}
+const DIST_PATH = helper.resolve("build");
+const ENTRYS_DIR = helper.resolve("src/pages/**/index.js");
 
 module.exports = {
   entry: {
     vendor: ["react", "react-dom", "axios"],
-    ...getEntrys(ENTRYS_DIR)
+    ...helper.getEntrys(ENTRYS_DIR)
   },
 
   output: {
@@ -60,11 +43,10 @@ module.exports = {
 
   plugins: [
     new CleanWebpackPlugin(DIST_PATH),
+
     // 配置全局变量 无需import或者requre即可使用
     new webpack.ProvidePlugin({
       $: "jquery"
     })
   ]
 };
-
-exports.getEntrys = getEntrys;
