@@ -1,0 +1,44 @@
+C:\Users\Administrator\Desktop\font-awesome-4.7.0
+├── css
+|  ├── font-awesome.css
+|  └── font-awesome.min.css
+├── fonts
+|  ├── fontawesome-webfont.eot
+|  ├── fontawesome-webfont.svg
+|  ├── fontawesome-webfont.ttf
+|  ├── fontawesome-webfont.woff
+|  ├── fontawesome-webfont.woff2
+|  └── FontAwesome.otf
+├── HELP-US-OUT.txt
+├── less
+|  ├── animated.less
+|  ├── bordered-pulled.less
+|  ├── core.less
+|  ├── fixed-width.less
+|  ├── font-awesome.less
+|  ├── icons.less
+|  ├── larger.less
+|  ├── list.less
+|  ├── mixins.less
+|  ├── path.less
+|  ├── rotated-flipped.less
+|  ├── screen-reader.less
+|  ├── stacked.less
+|  └── variables.less
+└── scss
+   ├── font-awesome.scss
+   ├── _animated.scss
+   ├── _bordered-pulled.scss
+   ├── _core.scss
+   ├── _fixed-width.scss
+   ├── _icons.scss
+   ├── _larger.scss
+   ├── _list.scss
+   ├── _mixins.scss
+   ├── _path.scss
+   ├── _rotated-flipped.scss
+   ├── _screen-reader.scss
+   ├── _stacked.scss
+   └── _variables.scss
+
+directory: 4 file: 37 

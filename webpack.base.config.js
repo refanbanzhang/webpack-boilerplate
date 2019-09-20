@@ -15,7 +15,7 @@ module.exports = {
   output: {
     path: DIST_PATH,
     filename: "assets/js/[name].[chunkhash:8].js", // 这里的name是根据entry的入口key决定的
-    publicPath: "/build" //  生成到打包后的文件中的路径前缀
+    publicPath: "/build/" //  生成到打包后的文件中的路径前缀
   },
 
   module: {

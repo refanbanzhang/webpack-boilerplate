@@ -76,6 +76,12 @@ module.exports = merge(baseConfig, {
       }
     ]
   },
+  
+  // 外部引入
+  externals: {
+    react: "React",
+    "react-dom": "ReactDOM"
+  },
 
   plugins: [
     new webpack.DefinePlugin({
