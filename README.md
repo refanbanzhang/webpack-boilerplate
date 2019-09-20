@@ -28,7 +28,7 @@
 - [x] 读取目录生成入口配置
 - [x] 全局引入jquery
 - [x] devtool: 'source-map' devtool: dev ? 'cheap-module-source-map' : 'source-map',
-
+- [ ] postcss-pxtorem的使用
 
 ## 字体图标的使用
 字体图标的显示分两部分组成
@@ -41,6 +41,17 @@
 
 ## 生成目录树的命令
 `tree -l 2 -o output.txt`
+
+
+## `ant design mobile`的按需加载使用
+1. 安装`npm install babel-plugin-import --save-dev`
+2. 在`.babelrc`中添加插件配置项
+```
+"plugins": [
+  ["import", { libraryName: "antd-mobile", style: "css" }] // `style: true` 会加载 less 文件
+]
+```
+3. 然后在项目中直接引入需要使用的`ant`组件模块就好，无需再引入样式文件
 
 
 ## 打包路径结果的分析
