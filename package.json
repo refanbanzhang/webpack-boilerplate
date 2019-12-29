@@ -36,7 +36,7 @@
     "axios": "^0.18.0",
     "better-scroll": "^1.14.1",
     "font-awesome": "^4.7.0",
-    "handlebars": "^4.0.12",
+    "handlebars": "^4.3.0",
     "handlebars-loader": "^1.7.1",
     "jquery": "^3.3.1",
     "modern-normalize": "^0.5.0",
