@@ -1,16 +1,12 @@
 const path = require('path')
-const webpack = require('webpack')
-const CleanWebpackPlugin = require('clean-webpack-plugin')
-
-const DIST_PATH = path.resolve(__dirname, 'src')
-const ASSETS_PATH = path.resolve(__dirname, 'build')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
-  entry: 'src/index.js',
+  mode: "none",
+  entry: './src/index.js',
   output: {
-    publicPath: '',
-    path: DIST_PATH,
-    filename: 'assets/js/[name].[chunkhash:8].js'
+    path: path.resolve(process.cwd(), 'dist'),
+    filename: 'bundle.js'
   },
   resolve: {
     alias: {
@@ -18,6 +14,6 @@ module.exports = {
     }
   },
   plugins: [
-    new CleanWebpackPlugin(ASSETS_PATH),
+    new CleanWebpackPlugin(),
   ]
 }
