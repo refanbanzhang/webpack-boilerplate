@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "build": "./node_modules/.bin/webpack --progress --config webpack.config.js"
+  },
   "dependencies": {
     "clean-webpack-plugin": "^4.0.0",
     "webpack": "^5.90.3"
