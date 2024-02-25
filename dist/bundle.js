@@ -1,1 +1,0 @@
-(()=>{const o="test".includes("tomcat");console.log("res",o)})();
