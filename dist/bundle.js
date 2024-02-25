@@ -1,7 +1,1 @@
-/******/ (() => { // webpackBootstrap
-var __webpack_exports__ = {};
-const print = () => {
-  console.log('Hello World!');
-}
-/******/ })()
-;
+(()=>{const o="test".includes("tomcat");console.log("res",o)})();
